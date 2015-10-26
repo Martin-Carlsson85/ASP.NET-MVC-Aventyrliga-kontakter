@@ -5,7 +5,7 @@
 - *Laborationsuppgift*:
 [1-2-aventyrliga-kontakter.pdf](https://github.com/1dv409/kursmaterial/raw/master/Laborationsuppgifter/1-2-aventyrliga-kontakter.pdf)
 
-- *Senast redovisad*: **vecka 49 (2014)**
+- *Senast redovisad*: **vecka 49 (2015)**
 
 ----------
 
