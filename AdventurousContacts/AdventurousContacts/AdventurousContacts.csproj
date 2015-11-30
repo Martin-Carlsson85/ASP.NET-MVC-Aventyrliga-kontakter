@@ -39,10 +39,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,6 +123,36 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\DataModels\AdventurousContactsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdventurousContactsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\AdventurousContactsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdventurousContactsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\AdventurousContactsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdventurousContactsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Contact.cs">
+      <DependentUpon>AdventurousContactsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>AdventurousContactsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\sp_helpdiagrams_Result.cs">
+      <DependentUpon>AdventurousContactsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\uspGetContact_Result.cs">
+      <DependentUpon>AdventurousContactsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +164,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\DataModels\AdventurousContactsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AdventurousContactsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataModels\AdventurousContactsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdventurousContactsModel.edmx</DependentUpon>
+      <LastGenOutput>AdventurousContactsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DataModels\AdventurousContactsModel.edmx.diagram">
+      <DependentUpon>AdventurousContactsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DataModels\AdventurousContactsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdventurousContactsModel.edmx</DependentUpon>
+      <LastGenOutput>AdventurousContactsModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -156,7 +211,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -164,6 +218,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
