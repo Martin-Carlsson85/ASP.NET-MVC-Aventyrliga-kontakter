@@ -26,12 +26,19 @@ namespace AdventurousContacts.Controllers
     
         public ActionResult Index()
         {
-            return View(_repository.GetLastContacts());
+            try
+            {
+                return View(_repository.GetLastContacts());
+            }
+            catch (Exception)
+            {
+                return View("NotFound");
+            }
         }
     
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
       
         [HttpPost]
@@ -49,6 +56,8 @@ namespace AdventurousContacts.Controllers
             }
             catch (DataException ex)
             {
+
+                //return View("NotFound");
                 TempData["error"] = "Det gick inte att skapa!";
                 TempData["errorDetails"] = ex.InnerException.InnerException.Message.ToString();
                 return RedirectToAction("Create", contact);
@@ -61,12 +70,15 @@ namespace AdventurousContacts.Controllers
         {
             if (!id.HasValue)
             {
+                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var contact = _repository.GetContactById(id.Value);
             if (contact == null)
             {
+
+                //return View("NotFound");
                 return HttpNotFound();
             }
             return View(contact);
@@ -80,7 +92,8 @@ namespace AdventurousContacts.Controllers
             var contact = _repository.GetContactById(id);
             if (contact == null)
             {
-                return HttpNotFound();
+                return View("NotFound");
+                //return HttpNotFound();
             }
             if (TryUpdateModel(contact, String.Empty, new string[] { "FirstName", "LastName", "EmailAddress" }))
             {
@@ -92,6 +105,7 @@ namespace AdventurousContacts.Controllers
                 }
                 catch (DataException ex)
                 {
+                    //return View("NotFound");
                     TempData["error"] = "Inga ändringar har sparats";
                     TempData["errorDetails"] = ex.InnerException.InnerException.Message.ToString();
                     return RedirectToAction("Edit", contact);
@@ -110,6 +124,7 @@ namespace AdventurousContacts.Controllers
             var contact = _repository.GetContactById(id.Value);
             if (contact == null)
             {
+                //return View("NotFound");
                 return HttpNotFound();
             }
 
