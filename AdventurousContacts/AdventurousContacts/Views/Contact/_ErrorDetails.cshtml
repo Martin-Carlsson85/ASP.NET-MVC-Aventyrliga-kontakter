@@ -1,8 +1,17 @@
-﻿
-<div class="alert-box-success">
-    <a href="" class="close">×</a>
-    @TempData["error"]
-    <ul>
-        <li>@TempData["errorDetails"]</li>
-    </ul>
-</div>
+﻿@if (TempData["success"] != null)
+{
+
+    <div class="alert-box success">
+        <a href="" class="close"></a>
+        @TempData["success"]
+    </div>
+}
+@if (TempData["error"] != null)
+{
+
+    <div class="alert-box error">
+        <a href="" class="close"></a>
+        @TempData["error"]
+    </div>
+}
+

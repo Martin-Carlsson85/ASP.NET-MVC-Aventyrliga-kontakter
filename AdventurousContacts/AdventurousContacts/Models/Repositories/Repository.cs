@@ -48,10 +48,12 @@ namespace AdventurousContacts.Models.Repositories
         {
             return _entities.Contacts.Find(contactId);
         }
+
         public List<Contact> GetLastContacts(int count = 20)
         {
             var collection = _entities.Contacts.AsEnumerable();
             return collection.Reverse().Take(count).Reverse().ToList();
+          
         }
         public void Save()
         {

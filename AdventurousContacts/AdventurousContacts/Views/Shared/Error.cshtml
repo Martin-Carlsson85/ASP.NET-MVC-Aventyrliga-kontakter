@@ -1,8 +1,19 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
-@{
-    ViewBag.Title = "Fel";
+﻿@{
+    Layout = null;
 }
 
-<h1 class="text-danger">Fel!.</h1>
-<h2 class="text-danger">Ett fel uppstod...!</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Fel!</h1>
+        <h2>Det verkar som det uppstod ett fel! Gå tillbaka och försök igen...</h2>
+    </hgroup>
+    @Html.ActionLink("Tillbaka till lista med kontakter", "Index")
+</body>
+</html>
+

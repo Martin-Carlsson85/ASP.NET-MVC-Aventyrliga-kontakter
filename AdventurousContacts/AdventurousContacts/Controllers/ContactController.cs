@@ -56,29 +56,24 @@ namespace AdventurousContacts.Controllers
             }
             catch (DataException ex)
             {
-
-                //return View("NotFound");
                 TempData["error"] = "Det gick inte att skapa!";
                 TempData["errorDetails"] = ex.InnerException.InnerException.Message.ToString();
                 return RedirectToAction("Create", contact);
             }
 
-            return View("Success", contact);
+            return View("success", contact);
         }
         
         public ActionResult Edit(int? id)
         {
             if (!id.HasValue)
             {
-                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var contact = _repository.GetContactById(id.Value);
             if (contact == null)
             {
-
-                //return View("NotFound");
                 return HttpNotFound();
             }
             return View(contact);
@@ -92,8 +87,7 @@ namespace AdventurousContacts.Controllers
             var contact = _repository.GetContactById(id);
             if (contact == null)
             {
-                return View("NotFound");
-                //return HttpNotFound();
+               return HttpNotFound();
             }
             if (TryUpdateModel(contact, String.Empty, new string[] { "FirstName", "LastName", "EmailAddress" }))
             {
@@ -105,13 +99,12 @@ namespace AdventurousContacts.Controllers
                 }
                 catch (DataException ex)
                 {
-                    //return View("NotFound");
                     TempData["error"] = "Inga ändringar har sparats";
                     TempData["errorDetails"] = ex.InnerException.InnerException.Message.ToString();
                     return RedirectToAction("Edit", contact);
                 }
             }
-            return View("Success", contact);
+            return View("success", contact);
         }
       
         public ActionResult Delete(int? id)
@@ -124,7 +117,6 @@ namespace AdventurousContacts.Controllers
             var contact = _repository.GetContactById(id.Value);
             if (contact == null)
             {
-                //return View("NotFound");
                 return HttpNotFound();
             }
 
@@ -150,7 +142,7 @@ namespace AdventurousContacts.Controllers
                 return RedirectToAction("Delete", new { id = id });
             }
 
-            return View("Success", contact);
+            return View("success", contact);
         }
         protected override void Dispose(bool disposing)
         {
