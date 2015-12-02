@@ -1,0 +1,13 @@
+﻿@model AdventurousContacts.Models.Contact
+@{
+    ViewBag.Title = "Det lyckades!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Lyckades!</h2>
+<div class="alert-box success">
+    <a href="" class="close">×</a>
+    <p>@Model.FirstName @Model.LastName (@Model.EmailAddress) @TempData["success"]</p>
+</div>
+<div>
+    @Html.ActionLink("Tillbaka till lista med kontakter", "Index")
+</div>

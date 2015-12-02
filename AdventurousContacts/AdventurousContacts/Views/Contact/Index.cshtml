@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AdventurousContacts.Models.Contact>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Äventyrliga kontakter</h2>
+@if (Model != null && Model.Any())
+{
+    @Html.ActionLink("Skapa en ny kontakt", "Create")
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.ActionLink("Redigera", "Edit", new { id = item.ContactID }) |
+                    @Html.ActionLink("Radera", "Delete", new { id = item.ContactID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

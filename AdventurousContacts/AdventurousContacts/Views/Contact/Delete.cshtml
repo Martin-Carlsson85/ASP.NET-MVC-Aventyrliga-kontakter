@@ -1,0 +1,26 @@
+﻿@model AdventurousContacts.Models.Contact
+@{
+    ViewBag.Title = "Radera kontakt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Radera kontakt</h2>
+<div>
+    <h4>Vald kontakt</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        if (TempData["error"] != null)
+        {
+            @Html.Partial("_ErrorDetails")
+        }
+
+        <p>
+            Är du säker på att du vill radera <strong>@Model.FirstName @Model.LastName (@Model.EmailAddress)</strong> ?
+        </p>
+        <div class="form-actions no-color">
+            <input type="submit" value="Radera" class="btn btn-default" /> 
+        </div>
+    }
+    @Html.ActionLink("Tillbaka till lista med kontakter", "Index")
+</div>
